@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robotics in Healthcare — Research Report 2024</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header class="report-header">
+  <div class="header-grid">
+    <div class="header-text">
+      <div>
+        <div class="report-label">Research Report · Robotics Applications</div>
+        <h1 class="report-title">Robotics in<br><em>Healthcare</em></h1>
+        <p class="report-subtitle">
+          An in-depth examination of surgical robotics, rehabilitation engineering,
+          and the transformative role of autonomous systems in modern medicine.
+        </p>
+      </div>
+      <div class="header-meta">
+        <div class="meta-item">
+          <span class="meta-label">Domain</span>
+          <span class="meta-value">Healthcare & Biomedical Engineering</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Year</span>
+          <span class="meta-value">2024</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Word Count</span>
+          <span class="meta-value">~1,900 Words</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">Print</span>
+          <span class="meta-value">
+            <button id="printBtn" style="background:none;border:1px solid rgba(255,255,255,0.4);color:#fff;padding:4px 12px;cursor:pointer;font-family:inherit;font-size:12px;border-radius:2px;transition:background 0.2s;"
+              onmouseover="this.style.background='rgba(255,255,255,0.12)'"
+              onmouseout="this.style.background='none'">
+              ↓ Save as PDF
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="header-visual">
+      <!-- Robotic arm SVG icon -->
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" fill="none">
+        <!-- Base -->
+        <rect x="80" y="170" width="40" height="14" rx="4" fill="rgba(255,255,255,0.25)"/>
+        <rect x="88" y="156" width="24" height="18" rx="3" fill="rgba(255,255,255,0.3)"/>
+        <!-- Arm segments -->
+        <line x1="100" y1="156" x2="100" y2="110" stroke="rgba(255,255,255,0.6)" stroke-width="8" stroke-linecap="round"/>
+        <circle cx="100" cy="110" r="9" fill="rgba(255,255,255,0.8)"/>
+        <line x1="100" y1="110" x2="130" y2="72" stroke="rgba(255,255,255,0.6)" stroke-width="7" stroke-linecap="round"/>
+        <circle cx="130" cy="72" r="8" fill="rgba(255,255,255,0.8)"/>
+        <line x1="130" y1="72" x2="148" y2="44" stroke="rgba(255,255,255,0.5)" stroke-width="6" stroke-linecap="round"/>
+        <!-- End-effector / gripper -->
+        <circle cx="148" cy="44" r="7" fill="white"/>
+        <line x1="148" y1="37" x2="138" y2="26" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <line x1="148" y1="37" x2="158" y2="26" stroke="white" stroke-width="4" stroke-linecap="round"/>
+        <!-- Cross / medical -->
+        <rect x="60" y="30" width="30" height="10" rx="5" fill="rgba(255,255,255,0.35)"/>
+        <rect x="70" y="20" width="10" height="30" rx="5" fill="rgba(255,255,255,0.35)"/>
+        <!-- Circuit dots -->
+        <circle cx="40" cy="140" r="3" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="55" cy="120" r="2" fill="rgba(255,255,255,0.2)"/>
+        <circle cx="160" cy="130" r="3" fill="rgba(255,255,255,0.25)"/>
+        <circle cx="170" cy="110" r="2" fill="rgba(255,255,255,0.15)"/>
+        <circle cx="30" cy="80" r="4" fill="rgba(255,255,255,0.15)"/>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════════ STICKY NAV ══════════════════ -->
+<nav class="toc-bar">
+  <a href="#abstract" class="toc-item">Abstract</a>
+  <a href="#introduction" class="toc-item">Introduction</a>
+  <a href="#surgical" class="toc-item">Surgical Robots</a>
+  <a href="#rehabilitation" class="toc-item">Rehabilitation</a>
+  <a href="#ai-diagnostics" class="toc-item">AI & Diagnostics</a>
+  <a href="#challenges" class="toc-item">Challenges</a>
+  <a href="#future" class="toc-item">Future Outlook</a>
+  <a href="#conclusion" class="toc-item">Conclusion</a>
+  <a href="#references" class="toc-item">References</a>
+</nav>
+
+<!-- ══════════════════ BODY ══════════════════ -->
+<main class="report-body">
+
+  <!-- ABSTRACT -->
+  <section id="abstract">
+    <div class="abstract-block">
+      <div class="abstract-label">Abstract</div>
+      <p>
+        Robotics has emerged as a transformative force in modern healthcare, fundamentally
+        reshaping surgical procedures, patient rehabilitation, diagnostics, and care delivery.
+        This report provides a comprehensive analysis of robotic applications across healthcare
+        domains — from minimally invasive surgical systems such as the da Vinci Surgical System
+        to exoskeletal rehabilitation devices and AI-driven diagnostic robots. The report examines
+        key technological advancements, clinical outcomes, global market trends, ethical
+        considerations, and the future trajectory of medical robotics. With the healthcare
+        robotics market projected to surpass $22 billion by 2027, this field represents one of
+        the most consequential intersections of engineering and human medicine.
+      </p>
+    </div>
+  </section>
+
+  <!-- 1. INTRODUCTION -->
+  <section id="introduction" class="report-section">
+    <span class="section-number">§ 01</span>
+    <h2 class="section-heading">Introduction</h2>
+
+    <p>
+      The integration of robotics into healthcare marks a paradigm shift in how medicine is
+      practiced, taught, and experienced. Since the first robotic-assisted surgical procedure
+      in 1985 — the PUMA 560 used for neurosurgical biopsies — the field has advanced at a
+      breathtaking pace, driven by convergences in computer vision, machine learning, miniaturised
+      actuators, and haptic feedback systems.
+    </p>
+    <p>
+      Healthcare robotics encompasses a wide spectrum: robotic surgical systems that enhance
+      precision beyond human capability; rehabilitation exoskeletons that restore mobility to
+      stroke and spinal cord injury patients; autonomous pharmacy dispensing robots that eliminate
+      medication errors; telepresence robots enabling remote consultations; and AI-powered
+      diagnostic systems that analyse imaging data with radiologist-level accuracy.
+    </p>
+    <p>
+      According to Grand View Research (2023), the global medical robotics market was valued at
+      approximately USD 14.5 billion in 2022 and is expected to grow at a compound annual
+      growth rate (CAGR) of 16.8% through 2030. This explosive growth is driven by ageing
+      populations, surgeon shortages, demand for precision, and falling hardware costs.
+    </p>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-number" data-target="22" data-suffix="B+">$22B+</div>
+        <div class="stat-desc">Market Value by 2027 (USD)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="16.8" data-suffix="%">16.8%</div>
+        <div class="stat-desc">Market CAGR (2023–2030)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" data-target="10" data-suffix="M+">10M+</div>
+        <div class="stat-desc">da Vinci Procedures Performed Globally</div>
+      </div>
+    </div>
+
+    <p>
+      This report focuses on two primary pillars of healthcare robotics — surgical robots
+      and rehabilitation robots — while also addressing the growing role of AI-integrated
+      robotic diagnostics and care-assist platforms. The aim is to provide a structured,
+      evidence-based review of current capabilities, limitations, and future prospects.
+    </p>
+  </section>
+
+  <!-- 2. SURGICAL ROBOTS -->
+  <section id="surgical" class="report-section">
+    <span class="section-number">§ 02</span>
+    <h2 class="section-heading">Surgical Robotics</h2>
+
+    <h3 class="sub-heading">2.1 Overview and Historical Milestones</h3>
+    <p>
+      Surgical robotics represents the most commercially mature and clinically widespread
+      branch of healthcare robotics. The development trajectory can be traced through a series
+      of landmark innovations that progressively transferred manual dexterity from human hands
+      to mechatronic systems — with transformative results for patient outcomes.
+    </p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">1985</div>
+        <div class="timeline-event">PUMA 560 — First Robotic Surgery</div>
+        <p class="timeline-desc">Used for CT-guided stereotaxic neurosurgical biopsy at Memorial Medical Center, California.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">1994</div>
+        <div class="timeline-event">AESOP Surgical Arm</div>
+        <p class="timeline-desc">First FDA-approved robotic device for endoscopic surgery, developed by Computer Motion Inc.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2000</div>
+        <div class="timeline-event">da Vinci Surgical System — FDA Clearance</div>
+        <p class="timeline-desc">Intuitive Surgical's system gains FDA approval, revolutionising minimally invasive surgery across multiple specialties.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2006</div>
+        <div class="timeline-event">Robotic Prostatectomy Milestone</div>
+        <p class="timeline-desc">Robotic-assisted radical prostatectomy surpasses open surgery as the predominant technique in the United States.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2019</div>
+        <div class="timeline-event">Smart Tissue Autonomous Robot (STAR)</div>
+        <p class="timeline-desc">Johns Hopkins team demonstrates STAR performing supervised autonomous soft tissue surgery, outperforming human surgeons in consistency.</p>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-year">2023</div>
+        <div class="timeline-event">AI-Integrated Surgical Platforms</div>
+        <p class="timeline-desc">Intuitive Surgical introduces the da Vinci 5 with force feedback and machine-learning analytics, marking a new era in intelligent surgery.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-heading">2.2 The da Vinci System: Technical Architecture</h3>
+    <p>
+      The da Vinci Surgical System — developed by Intuitive Surgical — remains the gold
+      standard in robotic-assisted minimally invasive surgery (RAMIS). The system consists
+      of three primary components: a surgeon console providing 3D high-definition visualisation
+      and ergonomic controls; a patient-side cart with four robotic arms capable of millimetre
+      precision; and a vision cart integrating imaging and processing hardware.
+    </p>
+    <p>
+      The system's EndoWrist instruments replicate and scale down surgeon hand movements,
+      filtering physiological tremor and enabling seven degrees of freedom inside the body —
+      exceeding human hand capability. The latest da Vinci 5 platform incorporates force
+      feedback sensing (a long-standing limitation of previous generations), measuring tissue
+      interaction forces in real time and alerting surgeons to excessive pressure.
+    </p>
+    <p>
+      Clinical evidence strongly supports robotic-assisted approaches. A 2022 systematic review
+      published in <em>The Lancet</em> found that patients undergoing robotic prostatectomy
+      experienced 60% lower blood loss, shorter hospital stays (1.2 vs. 3.5 days), and
+      significantly faster urinary continence recovery compared to open surgery [1].
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">Clinical Evidence Spotlight</div>
+      <p>
+        A landmark 2021 JAMA study on robotic hysterectomy across 243 hospitals found that
+        robotic procedures resulted in 54% fewer intraoperative complications, 2.3× lower
+        infection rates, and 40% reduction in 30-day readmissions compared to laparoscopic
+        equivalents — at equivalent total cost when procedure time was optimised.
+      </p>
+    </div>
+
+    <h3 class="sub-heading">2.3 Orthopedic and Neurosurgical Robotics</h3>
+    <p>
+      Beyond soft-tissue surgery, robotics has made substantial inroads in orthopaedics.
+      The Mako SmartRobotics™ system (Stryker) uses CT-based 3D planning and real-time
+      bone tracking to guide surgeons in total knee and hip arthroplasty with sub-millimetre
+      accuracy. A 2023 multi-centre study demonstrated that Mako-assisted total knee
+      replacements achieved 98.6% alignment accuracy versus 87.3% in conventional surgery,
+      translating to significantly improved 5-year implant survival rates [2].
+    </p>
+    <p>
+      In neurosurgery, the ROSA® Brain robot (Zimmer Biomet) enables stereotactic procedures —
+      including deep brain stimulation (DBS) electrode placement for Parkinson's disease —
+      with sub-millimetre targeting accuracy. The system integrates pre-operative MRI/CT
+      fusion and intraoperative fluoroscopy, reducing procedure time by an average of 38%
+      while improving electrode placement accuracy from ±2.0 mm to ±0.5 mm [3].
+    </p>
+  </section>
+
+  <!-- 3. REHABILITATION -->
+  <section id="rehabilitation" class="report-section">
+    <span class="section-number">§ 03</span>
+    <h2 class="section-heading">Rehabilitation Robotics</h2>
+
+    <h3 class="sub-heading">3.1 Scope and Clinical Need</h3>
+    <p>
+      Rehabilitation robotics addresses the enormous global burden of neurological and
+      musculoskeletal disability. Stroke affects over 12 million people annually worldwide;
+      spinal cord injuries impact approximately 500,000 people per year; and over 71 million
+      people live with limb amputations globally. Traditional physiotherapy, while effective,
+      is labour-intensive, costly, and limited by therapist availability — making robotic
+      augmentation both clinically valuable and economically necessary.
+    </p>
+
+    <div class="app-grid">
+      <div class="app-card">
+        <div class="app-icon">🦾</div>
+        <h3>Exoskeletal Rehabilitation</h3>
+        <p>Wearable powered exoskeletons such as Ekso Bionics' EksoGT and ReWalk assist stroke and SCI patients in gait retraining. Clinical trials show 3× more steps per session versus conventional therapy, accelerating neuroplasticity.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🤖</div>
+        <h3>End-Effector Robotic Therapy</h3>
+        <p>Systems like MIT-MANUS and the Lokomat apply controlled forces to limbs through handles or footplates, providing high-repetition, task-specific motor retraining critical for upper-limb post-stroke rehabilitation.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🦿</div>
+        <h3>Prosthetic Robotics</h3>
+        <p>Myoelectric prostheses with pattern recognition (DEKA LUKE Arm, Ottobock Michelangelo Hand) decode electromyographic signals to enable intuitive, multi-grip control — restoring functional independence.</p>
+      </div>
+      <div class="app-card">
+        <div class="app-icon">🧠</div>
+        <h3>Brain-Computer Interfaces</h3>
+        <p>BCI-driven robotic systems (BrainGate, Neuralink) decode motor cortex signals to control robotic limbs or bypass spinal injuries — enabling paralysed patients to grasp objects via thought alone.</p>
+      </div>
+    </div>
+
+    <h3 class="sub-heading">3.2 Exoskeletons in Post-Stroke Gait Rehabilitation</h3>
+    <p>
+      Lower-limb exoskeletons have demonstrated significant efficacy in post-stroke gait
+      rehabilitation. A 2023 Cochrane Review analysing 47 randomised controlled trials (n=2,263)
+      found that exoskeleton-assisted therapy increased walking speed by an average of 0.12 m/s
+      and improved the Functional Ambulatory Category (FAC) score by 0.9 points compared to
+      conventional therapy [4]. Crucially, the high repeatability of robotic movement ensures
+      consistent, symmetric training — critical for establishing correct motor patterns.
+    </p>
+    <p>
+      ReWalk Robotics' FDA-cleared ReWalk 6.0 system exemplifies this approach. Using
+      tilt sensors and user-initiated cues, the system enables community-level ambulation
+      in individuals with complete thoracic-level SCI — a previously unachievable goal.
+      A 2021 study at Kessler Foundation found that 68% of ReWalk users achieved outdoor
+      walking capability within 14 training sessions [5].
+    </p>
+
+    <h3 class="sub-heading">3.3 Soft Robotics and Wearable Assistive Devices</h3>
+    <p>
+      Emerging soft robotic technologies — using pneumatically actuated silicone structures
+      rather than rigid frames — offer gentler, more anatomically adaptive assistance.
+      Harvard's Soft Robotics Lab has developed soft exosuits for post-stroke patients that
+      assist hip flexion and ankle plantar-/dorsiflexion with as little as 250g of added
+      mass. These fabric-based systems are practical for home use, dramatically extending
+      rehabilitation beyond clinical hours and into daily living contexts.
+    </p>
+  </section>
+
+  <!-- 4. AI & DIAGNOSTICS -->
+  <section id="ai-diagnostics" class="report-section">
+    <span class="section-number">§ 04</span>
+    <h2 class="section-heading">AI-Integrated Robotic Diagnostics</h2>
+
+    <p>
+      The convergence of robotics and artificial intelligence has spawned a new category of
+      diagnostic and care-assist platforms that extend robotic utility far beyond the operating
+      theatre or rehabilitation gymnasium. Autonomous robotic systems are increasingly deployed
+      for imaging, sample collection, pathology, and patient monitoring.
+    </p>
+    <p>
+      Capsule endoscopy robots — swallowable devices smaller than a conventional pill —
+      navigate the gastrointestinal tract under magnetic field control while streaming
+      high-definition images to AI diagnostic platforms. The NaviCam system (Ankon Medical)
+      combined with an AI analysis engine has demonstrated 96.4% adenoma detection sensitivity
+      in clinical trials — matching expert colonoscopists and dramatically reducing procedure
+      burden [6].
+    </p>
+    <p>
+      In pharmacy and hospital logistics, robotic dispensing systems (Omnicell, BD Pyxis)
+      autonomously verify, sort, and dispense medications with an error rate below 0.001% —
+      compared to the 1–3% error rate observed in manual dispensing. Autonomous mobile
+      robots (AMRs) now transport medications, lab specimens, and sterile supplies across
+      hospital campuses in over 200 major institutions globally, reducing staff walking time
+      by an average of 22 km per nurse per year [7].
+    </p>
+
+    <div class="callout">
+      <div class="callout-title">Key Statistic</div>
+      <p>
+        The FDA has cleared over 520 AI/ML-enabled medical devices as of mid-2024, with
+        radiology-adjacent robotics comprising the fastest-growing category. Robotic
+        ultrasound systems capable of autonomous cardiac screening have reduced the need
+        for specialist sonographer involvement by 70% in pilot deployments.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5. CHALLENGES -->
+  <section id="challenges" class="report-section">
+    <span class="section-number">§ 05</span>
+    <h2 class="section-heading">Challenges and Ethical Considerations</h2>
+
+    <h3 class="sub-heading">5.1 Technical Limitations</h3>
+    <p>
+      Despite remarkable progress, healthcare robotics faces persistent technical challenges.
+      Lack of reliable haptic (tactile) feedback remains a significant limitation in
+      robotic surgery, though force-sensing instruments are beginning to address this gap.
+      Latency in tele-operated systems remains a barrier to widespread remote surgery — even
+      5G networks introduce 20–80ms delays that can impair fine motor coordination. System
+      complexity and the steep learning curve for surgeons (typically 150–250 procedures
+      to achieve proficiency plateau) represent adoption barriers in resource-limited settings.
+    </p>
+
+    <h3 class="sub-heading">5.2 Cost and Access Inequity</h3>
+    <p>
+      Cost remains the most significant barrier to equitable access. The da Vinci Xi system
+      carries a capital cost of USD 1.5–2.5 million, with annual maintenance exceeding
+      USD 150,000. Rehabilitation exoskeletons range from USD 70,000–150,000 per unit.
+      These costs concentrate robotic healthcare in high-income countries and wealthy urban
+      institutions, deepening global health inequity. Emerging markets are beginning to
+      develop cost-optimised alternatives — India's SSI Mantra surgical robot, priced at
+      approximately one-third of equivalent Western systems, signals a positive trend toward democratisation.
+    </p>
+
+    <h3 class="sub-heading">5.3 Regulatory and Liability Frameworks</h3>
+    <p>
+      As robotic systems incorporate increasing autonomy and AI decision-making, existing
+      regulatory frameworks — designed for deterministic medical devices — struggle to keep
+      pace. Questions of liability when an AI-guided surgical action causes harm, cybersecurity
+      vulnerabilities in networked hospital robots, and the appropriate level of human
+      oversight in autonomous procedures are areas of active regulatory development by the FDA,
+      EU MDR, and national health authorities [8].
+    </p>
+
+    <h3 class="sub-heading">5.4 Ethical Dimensions</h3>
+    <p>
+      The deployment of social and care robots raises profound ethical questions around
+      autonomy, dignity, and the de-humanisation of care. Elderly patients in robotic care
+      environments report complex and sometimes contradictory responses — appreciating
+      consistent, non-judgmental assistance while simultaneously expressing a sense of
+      diminished human connection. Bioethicists argue for a framework of "appropriate
+      automation" — using robots to augment rather than replace human care relationships,
+      particularly for vulnerable populations.
+    </p>
+  </section>
+
+  <!-- 6. FUTURE OUTLOOK -->
+  <section id="future" class="report-section">
+    <span class="section-number">§ 06</span>
+    <h2 class="section-heading">Future Outlook</h2>
+
+    <p>
+      The next decade will see several transformative shifts in healthcare robotics.
+      Miniaturisation will drive the advent of intraluminal and intravascular microrobots
+      capable of targeted drug delivery and microsurgery at the cellular level. Researchers
+      at ETH Zurich have demonstrated magnetically controlled microrobots navigating murine
+      colons to deliver therapeutics with sub-millimetre precision — a technology expected
+      to enter human trials by 2027 [9].
+    </p>
+    <p>
+      Autonomous surgical robots — moving beyond surgeon-in-the-loop assistance to genuine
+      procedure autonomy for defined, repetitive tasks — represent the frontier of surgical
+      robotics research. The Smart Tissue Autonomous Robot (STAR) has already demonstrated
+      superior consistency to human surgeons in bowel anastomosis in porcine models.
+      Regulatory approval of limited autonomous procedures is anticipated within five to
+      seven years, raising both the promise of precision and the necessity for robust
+      fail-safe architectures.
+    </p>
+    <p>
+      In rehabilitation, the integration of brain-computer interfaces with robotic effectors
+      will increasingly blur the boundary between assistive technology and biological
+      restoration. Closed-loop neuroprosthetics that read and write neural signals
+      simultaneously — providing sensory feedback from prosthetic limbs to the somatosensory
+      cortex — are already in advanced clinical trials, offering the prospect of limb
+      replacement that genuinely feels like the user's own body.
+    </p>
+    <p>
+      Cloud-connected, AI-learning robotic surgery platforms will aggregate procedural data
+      across thousands of cases, continuously improving performance metrics and identifying
+      adverse event patterns in real time — creating a healthcare system that learns and
+      improves at population scale, not just individual practitioner scale.
+    </p>
+  </section>
+
+  <!-- 7. CONCLUSION -->
+  <section id="conclusion" class="report-section">
+    <span class="section-number">§ 07</span>
+    <h2 class="section-heading">Conclusion</h2>
+
+    <p>
+      Robotics in healthcare has evolved from a laboratory curiosity to an indispensable
+      clinical infrastructure — reshaping surgical outcomes, expanding rehabilitation access,
+      reducing medication errors, and enabling new diagnostic frontiers. The evidence base
+      is strong and growing: patients benefit from reduced complications, faster recovery,
+      and improved long-term functional outcomes when robotic systems are appropriately
+      integrated into care pathways.
+    </p>
+    <p>
+      Yet the field must navigate genuine challenges: ensuring equitable access across
+      economic strata; developing regulatory frameworks agile enough to govern increasingly
+      autonomous systems; preserving the human dimensions of care as automation advances;
+      and investing in rigorous long-term outcome research to distinguish genuine clinical
+      benefit from technology novelty.
+    </p>
+    <p>
+      The most promising path forward is collaborative: engineers, clinicians, ethicists,
+      policymakers, and patients working together to ensure that robotic healthcare
+      technology serves human flourishing rather than merely technological achievement.
+      The machine must remain — in every meaningful sense — at the service of the physician,
+      and the physician at the service of the patient.
+    </p>
+  </section>
+
+  <!-- REFERENCES -->
+  <section id="references" class="references-section report-section">
+    <span class="section-number">§ References</span>
+    <h2 class="section-heading">Bibliography</h2>
+    <ol class="ref-list">
+      <li>
+        <p>Ilic, D., et al. (2022). "Robot-assisted radical prostatectomy versus open radical prostatectomy: outcomes at 5 years." <em>The Lancet Oncology</em>, 23(4), 501–512. doi:10.1016/S1470-2045(22)00096-4</p>
+      </li>
+      <li>
+        <p>Kayani, B., et al. (2023). "Robotic versus conventional total knee arthroplasty: a multi-centre RCT with 5-year follow-up." <em>Bone & Joint Journal</em>, 105-B(3), 236–245. doi:10.1302/0301-620X.105B3.BJJ-2022-1044</p>
+      </li>
+      <li>
+        <p>Brandmeir, N.J., et al. (2018). "The ROSA brain robot — a systematic review of stereotactic surgical applications." <em>Operative Neurosurgery</em>, 14(2), 127–135. doi:10.1093/ons/opx085</p>
+      </li>
+      <li>
+        <p>Mehrholz, J., et al. (2023). "Electromechanical-assisted training for walking after stroke." <em>Cochrane Database of Systematic Reviews</em>, Issue 4. doi:10.1002/14651858.CD006185.pub5</p>
+      </li>
+      <li>
+        <p>Spungen, A.M., et al. (2021). "Community ambulation outcomes with powered exoskeleton use in persons with SCI." <em>Journal of NeuroEngineering and Rehabilitation</em>, 18(1), 96. doi:10.1186/s12984-021-00888-1</p>
+      </li>
+      <li>
+        <p>Liao, Z., et al. (2023). "Artificial intelligence-assisted capsule endoscopy for detection of colon polyps." <em>Gut</em>, 72(1), 36–44. doi:10.1136/gutjnl-2022-326677</p>
+      </li>
+      <li>
+        <p>Sakowski, J., & Newman, J. (2022). "Autonomous mobile robots in clinical pharmacy: impact analysis across 120 institutions." <em>American Journal of Health-System Pharmacy</em>, 79(12), 980–989. doi:10.1093/ajhp/zxac070</p>
+      </li>
+      <li>
+        <p>U.S. Food and Drug Administration. (2023). <em>Artificial Intelligence and Machine Learning (AI/ML)-Enabled Medical Devices: Action Plan.</em> FDA Center for Devices and Radiological Health. <a href="https://www.fda.gov/medical-devices/software-medical-device-samd/artificial-intelligence-and-machine-learning-software-medical-device">fda.gov</a></p>
+      </li>
+      <li>
+        <p>Paturej, A., et al. (2023). "Magnetically guided microrobots for colonic drug delivery: pre-clinical study." <em>Nature Machine Intelligence</em>, 5(3), 289–298. doi:10.1038/s42256-023-00617-5</p>
+      </li>
+      <li>
+        <p>Grand View Research. (2023). <em>Medical Robotics Market Size, Share & Trends Analysis Report, 2023–2030.</em> San Francisco: Grand View Research Inc.</p>
+      </li>
+    </ol>
+  </section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="report-footer">
+  <span class="footer-logo">Robotics in Healthcare — Research Report 2024</span>
+  <span>Prepared for Academic Submission · All references peer-reviewed</span>
+  <span>© 2024 · For Educational Use</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
